@@ -1,2 +1,1 @@
-# Aplicaciones-Hibridas
-Repositorio de la materia Aplicaciones Hibridas
+siplificacion del codigo y union con router
