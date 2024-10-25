@@ -4,8 +4,11 @@ import "./App.css";
 
 import { useState, useEffect } from "react";
 
+
+
 function App() {
-  let logueado = true;
+  
+  let [logueado, setLogueado] = useState(false); // Retornar [valor, fn]
 
   let mensaje = logueado == true ? "Bienvenido" : "Iniciar sesion";
 
@@ -15,14 +18,18 @@ function App() {
     { id: 1, nombre: "Glletitas", precio: 100 },
     { id: 1, nombre: "Zapatilla", precio: 2500 },
   ];
-  const cursos = ["HTML", "JS", "React"];
   let titulo = <h2> Esto es un título</h2>;
+  const login = () => {
+    //alert('¿Hey que haces click?');
+    console.log('Se inicio la fn login')
+    setLogueado(true);
+  }
 
-  const user = {
-    name: "Juan",
-    email: "juan@mail.com",
-  };
+  const logout = () => {
+    setLogueado(false);
+  }
 
+console.log(login);
   return (
     <div>
       <h1> Aplicaciones Híbridas</h1>
@@ -31,22 +38,22 @@ function App() {
       <h4> {mensaje} </h4>
 
       <hr />
-
-      <div className="row">
-        {products.map((producto) => {
-          return <Card texto={producto.nombre} precio={producto.precio} />;
-        })}
-      </div>
+      <button className="boton" onClick={ login } type="button"> Login </button>
+      <button className="boton" onClick={ logout } type="button"> Logout </button>
 
       {/* Solo se puede retornar con div o <> </> v*/}
       {logueado == true ? (
-        <>
-          <h4> Bienvenido {nombre} </h4>
-          <div className="row">
-            <Card texto="Termo" precio={40000} />
-            <Card texto="Mate" precio={5000} />
-          </div>
-        </>
+        <div className="row">
+        {
+          products.map(producto => (
+            <Card
+              key={producto.id}
+              texto={producto.nombre}
+              precio={producto.precio}
+            />
+          ))
+        }
+      </div>
       ) : (
         <h4>
           {" "}
